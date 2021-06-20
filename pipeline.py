@@ -41,11 +41,10 @@ if __name__ == '__main__':
     parse.add_argument('--gamma', type=float, default=2.0, help='gamma transfer in pencilize process')
     parse.add_argument('--cuda', type=bool, default=False, help='use CUDA or not when doing deep learning')
     parse.add_argument('--model_skt', type=str, default='sketch_simplification/model_gan.t7', help='The path to the "sketch simplification" pretrained network')
-    parse.add_argument('--vec_num', type=int, default=1, help='the number of vector form sketch data')
+    parse.add_argument('--vec_num', type=int, default=1, help='the number of vector form sketch image')
 
     args = parse.parse_args()
     args.img = '2007_000033'
-    args.model_skt = 'sketch_simplification/model_gan.t7'
 
     # validation
     assert os.path.exists(args.voc), 'ERROR: VOC path is invalid!'
