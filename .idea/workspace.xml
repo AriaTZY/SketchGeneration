@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="09c36eb7-93f9-4636-b1d3-01d9f77c8151" name="Default Changelist" comment="" />
+    <list default="true" id="09c36eb7-93f9-4636-b1d3-01d9f77c8151" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/readme.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,13 +23,13 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="24" />
-          <entry key="py" value="2615" />
+          <entry key="py" value="2627" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="PLAIN_TEXT" value="24" />
-          <entry key="Python" value="2615" />
+          <entry key="Python" value="2627" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -45,27 +48,27 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/pipeline.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="190">
-              <caret line="10" selection-start-line="10" selection-end-line="10" />
+            <state relative-caret-position="1102">
+              <caret line="58" selection-start-line="58" selection-end-line="58" />
               <folding>
                 <element signature="e#66#113#0" expanded="true" />
-                <marker date="1624146171759" expanded="true" signature="384:864" ph="..." />
+                <marker date="1624206287986" expanded="true" signature="384:864" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/virtual_sketching/test_vectorization.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="518">
-              <caret line="433" column="61" selection-start-line="433" selection-start-column="47" selection-end-line="433" selection-end-column="61" />
+            <state relative-caret-position="24">
+              <caret line="419" column="50" selection-start-line="419" selection-start-column="50" selection-end-line="419" selection-end-column="50" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
-                <marker date="1624144255638" expanded="true" signature="19112:19915" ph="..." />
+                <marker date="1624206288127" expanded="true" signature="19112:19905" ph="..." />
               </folding>
             </state>
           </provider>
@@ -118,6 +121,9 @@
       <find>min_window_size</find>
     </findStrings>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
@@ -127,10 +133,10 @@
         <option value="$PROJECT_DIR$/image2pencil/pencilize.py" />
         <option value="$PROJECT_DIR$/sketch_simplification/sketchize.py" />
         <option value="$PROJECT_DIR$/virtual_sketching/batch_test.py" />
-        <option value="$PROJECT_DIR$/virtual_sketching/test_vectorization.py" />
         <option value="$PROJECT_DIR$/virtual_sketching/dataset_utils.py" />
         <option value="$PROJECT_DIR$/virtual_sketching/model_common_test.py" />
         <option value="$PROJECT_DIR$/virtual_sketching/my_vectorization.py" />
+        <option value="$PROJECT_DIR$/virtual_sketching/test_vectorization.py" />
         <option value="$PROJECT_DIR$/pipeline.py" />
       </list>
     </option>
@@ -141,6 +147,7 @@
     <option name="width" value="1944" />
     <option name="height" value="1044" />
   </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
@@ -157,7 +164,7 @@
             <path>
               <item name="UCL-SketchGeneration" type="b2602c69:ProjectViewProjectNode" />
               <item name="UCL-SketchGeneration" type="462c0819:PsiDirectoryNode" />
-              <item name="virtual_sketching" type="462c0819:PsiDirectoryNode" />
+              <item name="image2pencil" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -292,7 +299,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22069523" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -364,17 +370,6 @@
     <entry file="file://$PROJECT_DIR$/data/sketch.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/pipeline.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="10" selection-start-line="10" selection-end-line="10" />
-          <folding>
-            <element signature="e#66#113#0" expanded="true" />
-            <marker date="1624146171759" expanded="true" signature="384:864" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/virtual_sketching/my_vectorization.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="4845">
@@ -404,11 +399,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/virtual_sketching/test_vectorization.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="518">
-          <caret line="433" column="61" selection-start-line="433" selection-start-column="47" selection-end-line="433" selection-end-column="61" />
+        <state relative-caret-position="24">
+          <caret line="419" column="50" selection-start-line="419" selection-start-column="50" selection-end-line="419" selection-end-column="50" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
-            <marker date="1624144255638" expanded="true" signature="19112:19915" ph="..." />
+            <marker date="1624206288127" expanded="true" signature="19112:19905" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pipeline.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1102">
+          <caret line="58" selection-start-line="58" selection-end-line="58" />
+          <folding>
+            <element signature="e#66#113#0" expanded="true" />
+            <marker date="1624206287986" expanded="true" signature="384:864" ph="..." />
           </folding>
         </state>
       </provider>
