@@ -80,6 +80,7 @@ Each generation is random, and you can roughly get slightly different stroke ske
 ```
 cd sketch_simplification
 bash download_models.sh
+cd ..
 ```
 
 ​	(It only needs *"model_mse.t7"* model, so you can delete other ones after download)
@@ -88,7 +89,7 @@ bash download_models.sh
 
   * download the model from [here](https://drive.google.com/drive/folders/1-hi2cl8joZ6oMOp4yvk_hObJGAK6ELHB)
 
-  * put *pretrain_clean_line_drawings* folder under this [direction](virtual_sketching/model/)
+  * put *pretrain_clean_line_drawings* folder under this [direction](virtual_sketching/model)
 
 ### Single Run
 
