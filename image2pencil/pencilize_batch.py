@@ -4,29 +4,7 @@ import cv2 as cv
 import matplotlib.pylab as plt
 import os
 import numpy as np
-import sys
-
-# ====================
-# Pre-work
-# ====================
-
-mode = 'PC'
-if len(sys.argv) > 1:
-    print('argv:', sys.argv[1])
-    mode = 'SERVER'
-
-if mode == 'PC':
-    voc_path = 'F:/IMAGE_DATABASE/VOCtrainval_11-May-2012/VOCdevkit/VOC2012/'
-    image_path = 'E:\Postgraduate\sketch_simplification-master\data\image/'
-    pencil_path = 'E:\Postgraduate\sketch_simplification-master\data\input/'
-
-else:
-    voc_path = '/home/tan/data/datasets/VOC/VOCdevkit/VOC2012'
-    image_path = '/home/tan/POSTGRADUATE/sketch_simplification-master-server/data/image/'
-    pencil_path = '/home/tan/POSTGRADUATE/sketch_simplification-master-server/data\input/'
-
-if not os.path.exists(image_path): os.makedirs(image_path)
-if not os.path.exists(pencil_path): os.makedirs(pencil_path)
+import argparse
 
 
 # Crop the foreground object in order to fill the whole image
@@ -80,12 +58,31 @@ def enhance_contrast(img):
 
 
 if __name__ == '__main__':
-    save_count = 614  # 500
-    for i in range(500):
+    parse = argparse.ArgumentParser()
+
+    parse.add_argument('--voc_path', type=str, default='F:/IMAGE_DATABASE/VOCtrainval_11-May-2012/VOCdevkit/VOC2012/',
+                       help='voc path in your PC, normally end with "../VOC20xx/"')
+    parse.add_argument('--image_path', type=str, default='../data/dataset/image/', help='The path to store cropped world images')
+    parse.add_argument('--pencil_path', type=str, default='../data/dataset/pencil/', help='The path to store pencil images')
+    parse.add_argument('--num', type=int, default=10, help='The number of data you wanna generate')
+    parse.add_argument('--kernel', type=int, default=15, help='Gaussian blur kernel size')
+    parse.add_argument('--show', type=bool, default=False, help='whether to dynamically show the result')
+
+    args = parse.parse_args()
+
+    # validation check
+    assert os.path.exists(args.voc_path), 'ERROR: VOC path is not found, please check!!'
+    assert args.num != 0, 'ERROR: Please input the image number you want to generate'
+    assert args.kernel >= 3, 'Kernel is too small'
+    if not os.path.exists(args.image_path):  os.makedirs(args.image_path)
+    if not os.path.exists(args.pencil_path):  os.makedirs(args.pencil_path)
+
+    save_count = 0
+    while True:
         # get the path of masks and images
-        seg_path = voc_path + 'SegmentationClass/'
-        img_path = voc_path + 'JPEGImages/'
-        img_idx = save_count + i
+        seg_path = args.voc_path + 'SegmentationClass/'
+        img_path = args.voc_path + 'JPEGImages/'
+        img_idx = save_count
 
         print('Processing img:', img_idx)
         path_list = os.listdir(seg_path)
@@ -127,7 +124,6 @@ if __name__ == '__main__':
             new_sheet = np.zeros([larger_edge_len, larger_edge_len, 3], np.uint8) + 255
 
             start_position = round((larger_edge_len - edge[small_edge_idx]) / 2)
-            print(start_position)
             if small_edge_idx == 0:
                 new_sheet[start_position:start_position + edge[small_edge_idx], :, :] = crop_img
             else:
@@ -135,21 +131,27 @@ if __name__ == '__main__':
             crop_img = new_sheet
 
         # Save cropped world image
-        cv.imwrite(image_path + '{:04d}.png'.format(save_count), crop_img)
-        cv.imshow('d', crop_img)
-        cv.waitKey(10)
+        cv.imwrite(args.image_path + '{:04d}.png'.format(save_count), crop_img)
+        if args.show:
+            cv.imshow('d', crop_img)
+            cv.waitKey(10)
 
         # pencil transformation
         img = crop_img
         gray = cv.cvtColor(img, cv.COLOR_RGB2GRAY)
         gray_inv = cv.bitwise_not(gray)
 
-        kernel_sz = 21
+        kernel_sz = args.kernel
         gray_smooth = cv.GaussianBlur(gray_inv, (kernel_sz, kernel_sz), 0, 0)
         pencil = cv.divide(gray, 255 - gray_smooth, scale=256)
 
         # Save pencil image
-        # cv.imwrite(pencil_path+'{:04d}.png'.format(save_count), pencil)
-        cv.imshow('d', pencil)
-        cv.waitKey(0)
+        cv.imwrite(args.pencil_path+'{:04d}.png'.format(save_count), pencil)
+        if args.show:
+            cv.imshow('d', pencil)
+            cv.waitKey(0)
+
         save_count += 1
+        if save_count == args.num:
+            print('Pencil generation work done!')
+            break

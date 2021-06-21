@@ -45,8 +45,8 @@ if __name__ == '__main__':
 
     args = parse.parse_args()
 
-    args.model_skt = '../sketch_simplification-master/model_gan.t7'
-    args.model_vec = '../virtual_sketching-main/outputs/snapshot/'
+    # args.model_skt = '../sketch_simplification-master/model_gan.t7'
+    # args.model_vec = '../virtual_sketching-main/outputs/snapshot/'
 
     # validation
     assert os.path.exists(args.voc), 'ERROR: VOC path is invalid!'

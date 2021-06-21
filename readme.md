@@ -1,8 +1,10 @@
+
+
 # Sketch Generation
 
 ## Description
 
-The goal of this project is to provide enough data sets for high-resolution sketch completion, the work is to convert natural world pictures into a variety of high-resolution sketches (vector format). Finally, multiple sets of "*world pictures* vs *sketches*" image pairs are obtained. In the mean time, a GUI interface is also provided to filter pictures of different quality.
+The goal of this project is to provide enough data sets for high-resolution sketch completion, the work is to convert natural world pictures into a variety of high-resolution sketches (vector format). Finally, multiple sets of "*world pictures* vs *sketches*" image pairs are obtained. In the mean time, a GUI interface is also provided to filter pictures of different qualities.
 
 <center class='half'>
     <img src="docs/motorbike1.png" width="500">
@@ -71,9 +73,7 @@ Each generation is random, and you can roughly get slightly different stroke ske
 
 
 
-## Usage
-
-### Model Preparation
+## Model Preparation
 
 1. First, download the pre-trained model of "sketch simplification" (i.e., pencil 2 sketch step)
 
@@ -89,9 +89,11 @@ cd ..
 
   * download the model from [here](https://drive.google.com/drive/folders/1-hi2cl8joZ6oMOp4yvk_hObJGAK6ELHB)
 
-  * put *pretrain_clean_line_drawings* folder under this [direction](virtual_sketching/model)
+  * put *pretrain_clean_line_drawings* folder under this [direction](virtual_sketching/model) (virtual_sketching/model/)
 
-### Single Run
+    
+
+## Single Run
 
 After downloading and configuring the above model, you can run the result of one image by typing: (make sure you stay in the project root now)
 
@@ -101,7 +103,7 @@ python pipeline.py --voc [the path of VOC dataset on your PC]  --img [image name
 
 (note: please pick up an image with the corresponding segmentation file, and don't write appendix like .png or .jpg)
 
-**example:**
+example:
 
 ```
 python pipeline.py --voc F:/VOCdevkit/VOC2012/ --img 2007_000032
@@ -123,10 +125,98 @@ example:
 ```
 python pipeline.py --voc F:/VOCdevkit/VOC2012/ --img 2007_000032 --kernel 15 --gamma 2.0 --cuda True --vec_num 10
 ```
-
-### Output
+**output:** 
 
 The output will be stored in the [data](data/) folder, where [seq_data](data/seq_data) folder inside will store the stroke file in vector form.
+
+
+
+## Batch Run
+
+This mode is used to generate large number of data and is suitable for providing training data for "sketch completion"
+
+However, due to the large number of images, each step will take a very long time, so it is recommended to use step-by-step operation instead of integrating into one pipeline python file.
+
+### 1. image to pencil
+
+make sure now you are staying in the root path of project, now type code below:
+
+```
+cd image2pencil
+python pencilize_batch.py --voc [the path of VOC]  --num [the image number you want to generate]
+cd ..
+```
+
+**other parameters:**
+
+```
+--kernel (int) Gaussian blur kernel size
+--show  (bool) Whether to dynamically show the result when processing, rely on OpenCV
+```
+
+**output:**
+
+If success, you will see two folders called "image" and "pencil" are generated under *"data/dataset/"* path.
+
+### 2.  pencil to sketch
+
+make sure now you are staying in the root path of project and finished the first step, now type code below:
+
+```
+cd sketch_simplification
+python sketchize_batch.py
+cd ..
+```
+
+**other parameters:**
+
+```
+--cuda      (bool) whether to use CUDA, default is False
+--img_sz  (str)  The size you want to resize the input image
+```
+
+**output:**
+
+If success, you will see one folders called "sketch" are generated under *"data/dataset/"* path.
+
+### 3.  sketch to stroke
+
+make sure now you are staying in the root path of project and finished the second step, now type code below:
+
+```
+cd virtual_sketching
+python batch_test.py
+cd ..
+```
+
+**other parameters:**
+
+```
+--sample    (int) How many stroke file corresponding to 1 input sketch
+--max_stroke  (int) The max stroke number for one round, there are 10 rounds in one stroke file
+```
+
+**output:**
+
+If success, you will see one folders called "stroke" are generated under *"data/dataset/"* path.
+
+
+
+## Dataset Download
+
+You can also directly download the dataset I already generated [here](https://www.dropbox.com/s/xlo1q9tin4dv61w/SketchDataset.zip?dl=0), which contains a total of 1326 pictures, and each picture has 10 stroke files corresponding to it.
+
+**Image Gallery:**
+
+<figure>
+    <img src='docs/image_gallery.png'>
+</figure>
+
+****
+
+**Sketch Gallery:**
+
+<img src='docs/sketch_gallery.png'>
 
 
 
