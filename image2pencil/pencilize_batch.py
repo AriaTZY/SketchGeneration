@@ -103,6 +103,7 @@ if __name__ == '__main__':
         too_small, crop_boundary = max_object(bin_mask_img)
         if too_small:
             print('  +info: picture {} is too small, skip'.format(img_idx))
+            save_count += 1
             continue
         bin_mask_img = bin_mask_img[crop_boundary[0, 0]:crop_boundary[0, 1], crop_boundary[1, 0]:crop_boundary[1, 1]]
         color_img = color_img[crop_boundary[0, 0]:crop_boundary[0, 1], crop_boundary[1, 0]:crop_boundary[1, 1]]

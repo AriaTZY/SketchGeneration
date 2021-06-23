@@ -10,7 +10,7 @@ import cv2 as cv
 import numpy as np
 import time
 
-
+""" python sketchize_batch.py --cuda True --model ../../sketch_simplification-master/model_gan.t7 --input ../../Dataset/Test/pencil/ --out ../../Dataset/Test/sketch/ """
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Sketch simplification demo.')
     parser.add_argument('--model', type=str, default='model_gan.t7', help='Model to use.')
